@@ -5,19 +5,19 @@
 
     public class FizzBuzzer
     {
-        public IEnumerable<string> Execute(int limit)
+        public IEnumerable<string> Execute(int lowEndLimit, int topEndLimit)
         {
-            for (var index = 1; index <= limit; index++)
+            for (var index = lowEndLimit; index <= topEndLimit; index++)
             {
-                if (index % 3 == 0 && index % 5 == 0)
+                if (IsFizzBuzz(index))
                 {
                     yield return "FizzBuzz";
                 }
-                else if (index % 3 == 0)
+                else if (IsFizz(index))
                 {
                     yield return "Fizz";
                 }
-                else if (index % 5 == 0)
+                else if (IsBuzz(index))
                 {
                     yield return "Buzz";
                 }
@@ -26,6 +26,21 @@
                     yield return index.ToString(CultureInfo.InvariantCulture);
                 }
             }
+        }
+
+        private static bool IsFizzBuzz(int index)
+        {
+            return IsFizz(index) && IsBuzz(index);
+        }
+
+        private static bool IsBuzz(int index)
+        {
+            return index % 5 == 0 || index.ToString(CultureInfo.InvariantCulture).Contains("5");
+        }
+
+        private static bool IsFizz(int index)
+        {
+            return index % 3 == 0 || index.ToString(CultureInfo.InvariantCulture).Contains("3");
         }
     }
 }
