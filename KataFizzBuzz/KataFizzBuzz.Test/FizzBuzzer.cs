@@ -9,7 +9,11 @@
         {
             for (var index = 1; index <= limit; index++)
             {
-                if (index % 3 == 0)
+                if (index % 3 == 0 && index % 5 == 0)
+                {
+                    yield return "FizzBuzz";
+                }
+                else if (index % 3 == 0)
                 {
                     yield return "Fizz";
                 }
